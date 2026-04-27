@@ -21,10 +21,32 @@ Model performance will be assessed using diagnostic plots, including residuals v
 
 ```{r}
 library(readr)
-climate <- read_csv("climate_change_dataset.csv", show_col_types=FALSE)
+climate <- read.csv("climate_change_dataset.csv", fileEncoding = "UTF-8-BOM", stringsAsFactors = FALSE)
 ```
 
 ## Exploratory Analysis
+
+```{r}
+names(climate) <- iconv(names(climate), from = "", to = "UTF-8", sub = "")
+```
+
+```{r}
+library(dplyr)
+
+tidy_climate <- climate %>%
+  rename(
+    year = Year,
+    country = Country,
+    avg_temp = Avg.Temperature...C.,
+    co2_emissions = CO2.Emissions..Tons.Capita.,
+    sea_level_rise = Sea.Level.Rise..mm.,
+    rainfall = Rainfall..mm.,
+    population = Population,
+    renewable_energy = Renewable.Energy....,
+    extreme_weather = Extreme.Weather.Events,
+    forest_area = Forest.Area....
+  )
+```
 
 # Results
 Write your results here.
