@@ -6,10 +6,18 @@ output: pdf_document
 ---
 
 # Introduction
-Write your introduction here.
+
+This project analyzes the Global Climate Indicators: A Comprehensive Dataset (2000–2024) sourced from Kaggle, which compiles environmental and climate-related data across multiple countries over time. The dataset includes key variables such as year, country, average temperature, CO₂ emissions, sea level rise, rainfall, population, renewable energy usage, extreme weather events, and forest area, with approximately 1,000 observations and 10 variables in total.
+
+This dataset is particularly relevant for exploring patterns and relationships within global climate change. Its structure makes it suitable for examining how average temperature is associated with other environmental and socioeconomic factors, as well as for comparing trends across countries and time periods. By analyzing these variables, the project aims to better understand how human activity and environmental changes interact to influence global temperature trends.
 
 # Methods
-Describe your dataset and methods.
+
+Exploratory data analysis will be conducted to identify variables associated with average temperature. This will include generating scatterplots for each predictor variable against average temperature and calculating correlation coefficients to assess the strength and direction of relationships.
+
+Multiple predictive models will then be developed and compared. A multiple linear regression model will serve as the initial approach. If this model is inadequate, alternative methods will be considered, including physics-based models such as General Circulation Models (GCMs) and AI-driven models like Pangu-Weather and GenCast. In addition, single-variable regression models will be evaluated to determine whether individual predictors better explain variation in average temperature than a multivariable approach.
+
+Model performance will be assessed using diagnostic plots, including residuals versus fitted values and Q-Q plots, to evaluate assumptions of linearity, homoscedasticity, and normality. If these assumptions are violated, alternative models will be prioritized. Models will be compared using R^2 values, with the highest value indicating the best fit.
 
 ```{r}
 library(readr)
