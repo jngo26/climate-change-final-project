@@ -1,6 +1,0 @@
-~%2FDesktop%2FGeorgeMasonUniversity%2FFall%202025%2FR_CDS101%2Fcds101_starter_kit_gmu_rmd_v3%2FMakefile="AF582F71"
-~%2FDesktop%2FGeorgeMasonUniversity%2FFall%202025%2FR_CDS101%2Fcds101_starter_kit_gmu_rmd_v3%2Ffinal_report_example.Rmd="D283870E"
-~%2FDesktop%2FGeorgeMasonUniversity%2FFall%202025%2FR_CDS101%2Fcds101_starter_kit_gmu_rmd_v3%2Ffinal_report_template.Rmd="1B28E817"
-~%2FDesktop%2FGeorgeMasonUniversity%2FFall%202025%2FR_CDS101%2Fcds101_starter_kit_gmu_rmd_v3%2Fnotebooks%2Feda_walkthrough.Rmd="9B90E299"
-~%2FDesktop%2FGeorgeMasonUniversity%2FFall%202025%2FR_CDS101%2Fcds101_starter_kit_gmu_rmd_v3%2Fproposal_template.Rmd="6BDA56B1"
-~%2FDesktop%2FGeorgeMasonUniversity%2FFall%202025%2FR_CDS101%2Fcds101_starter_kit_gmu_rmd_v3%2Fproposal_template.md="231B5D1C"
