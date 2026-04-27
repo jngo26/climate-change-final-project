@@ -48,6 +48,28 @@ tidy_climate <- climate %>%
   )
 ```
 
+```{r}
+library(ggplot2)
+library(tidyr)
+
+long_climate <- tidy_climate %>%
+  pivot_longer(
+    cols = co2_emissions:forest_area,
+    names_to = "climate_indicator",
+    values_to = "value"
+  )
+```
+
+```{r, fig.width=10, fig.height=10}
+long_climate %>% ggplot() +
+  geom_point(mapping=aes(x=value, y=avg_temp)) +
+  facet_wrap(~climate_indicator, scales="free_x") +
+  geom_smooth(mapping=aes(x=value, y=avg_temp), method="lm") +
+  labs(title="Average Temp. vs. Climate Change Indicators", x="Climate Indicators", y="Average Temp.") +
+  scale_x_log10() +
+  scale_y_log10()
+```
+
 # Results
 Write your results here.
 
