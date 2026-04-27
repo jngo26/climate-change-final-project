@@ -77,20 +77,21 @@ long_climate %>%
   geom_point(mapping=aes(x=value, y=avg_temp)) +
   facet_wrap(~climate_indicator, scales="free_x") +
   geom_smooth(mapping=aes(x=value, y=avg_temp), method="lm") +
-  labs(title="Average Temp. vs. Climate Change Indicators (2018-2023)", x="Climate Indicators", y="Average Temp.") +
+  labs(title="Average Temp. vs. Climate Change Indicators (2018-2023)",
+       x="Climate Indicators", y="Average Temp.") +
   scale_x_log10() +
   scale_y_log10()
 ```
 
 ```{r, fig.width=10, fig.height=10}
 long_climate %>%
-  filter(year >= 2018 & year <= 2023, country == "USA") %>%
+  filter(country == "USA") %>%
   ggplot() +
   geom_point(aes(x = value, y = avg_temp)) +
   facet_wrap(~climate_indicator, scales = "free_x") +
   geom_smooth(aes(x = value, y = avg_temp), method = "lm") +
   labs(
-    title = "Average Temp. vs. Climate Indicators (USA, 2018–2023)",
+    title = "Average Temp. vs. Climate Indicators (USA, 2000-2023)",
     x = "Climate Indicators",
     y = "Average Temp."
   ) +
