@@ -7,7 +7,7 @@ output: pdf_document
 
 # Introduction
 
-This project analyzes the Global Climate Indicators: A Comprehensive Dataset (2000–2024) sourced from Kaggle, which compiles environmental and climate-related data across multiple countries over time. The dataset includes key variables such as year, country, average temperature, CO₂ emissions, sea level rise, rainfall, population, renewable energy usage, extreme weather events, and forest area, with approximately 1,000 observations and 10 variables in total.
+This project analyzes the *[Global Climate Indicators: A Comprehensive Dataset (2000–2024)](https://www.kaggle.com/datasets/bhadramohit/climate-change-dataset)* sourced from Kaggle, which compiles environmental and climate-related data across multiple countries over time. The dataset includes key variables such as year, country, average temperature, CO2 emissions, sea level rise, rainfall, population, renewable energy usage, extreme weather events, and forest area, with approximately 1,000 observations and 10 variables in total.
 
 This dataset is particularly relevant for exploring patterns and relationships within global climate change. Its structure makes it suitable for examining how average temperature is associated with other environmental and socioeconomic factors, as well as for comparing trends across countries and time periods. By analyzing these variables, the project aims to better understand how human activity and environmental changes interact to influence global temperature trends.
 
@@ -23,6 +23,8 @@ Model performance will be assessed using diagnostic plots, including residuals v
 library(readr)
 climate <- read_csv("climate_change_dataset.csv", show_col_types=FALSE)
 ```
+
+## Exploratory Analysis
 
 # Results
 Write your results here.
