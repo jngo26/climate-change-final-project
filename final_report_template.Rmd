@@ -65,7 +65,7 @@ long_climate %>% ggplot() +
   geom_point(mapping=aes(x=value, y=avg_temp)) +
   facet_wrap(~climate_indicator, scales="free_x") +
   geom_smooth(mapping=aes(x=value, y=avg_temp), method="lm") +
-  labs(title="Average Temp. vs. Climate Change Indicators", x="Climate Indicators", y="Average Temp.") +
+  labs(title="Average Temp. vs. Climate Change Indicators (2000-2023)", x="Climate Indicators", y="Average Temp.") +
   scale_x_log10() +
   scale_y_log10()
 ```
@@ -98,6 +98,10 @@ long_climate %>%
   scale_x_log10() +
   scale_y_log10()
 ```
+
+## Model
+
+## Linearity Assumptions
 
 # Results
 Write your results here.
