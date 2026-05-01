@@ -101,6 +101,34 @@ long_climate %>%
 
 ## Model
 
+```{r}
+US_climate <- tidy_climate %>%
+  filter(country == "USA")
+```
+
+```{r}
+US_climate_all <- lm(log(avg_temp) ~ log(co2_emissions) +
+                       log(sea_level_rise) +
+                       log(rainfall) +
+                       log(population) +
+                       log(renewable_energy) +
+                       extreme_weather +
+                       log(forest_area),
+                     data = US_climate)
+```
+
+```{r}
+US_climate_significant <- lm(log(avg_temp) ~ log(rainfall) + extreme_weather + log(forest_area), data = US_climate)
+```
+
+```{r}
+US_climate_positive <- lm(log(avg_temp) ~ log(extreme_weather), data = US_climate)
+```
+
+```{r}
+US_climate_negative <- lm(log(avg_temp) ~ log(forest_area) + log(rainfall), data = US_climate)
+```
+
 ## Linearity Assumptions
 
 # Results
