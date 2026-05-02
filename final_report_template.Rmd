@@ -102,6 +102,7 @@ long_climate %>%
 ## Model
 
 ```{r}
+library(broom)
 US_climate <- tidy_climate %>%
   filter(country == "USA")
 ```
@@ -115,18 +116,36 @@ US_climate_all <- lm(log(avg_temp) ~ log(co2_emissions) +
                        extreme_weather +
                        log(forest_area),
                      data = US_climate)
+glance(US_climate_all)[1]
 ```
 
 ```{r}
-US_climate_significant <- lm(log(avg_temp) ~ log(rainfall) + extreme_weather + log(forest_area), data = US_climate)
+US_climate_significant <- lm(log(avg_temp) ~ log(rainfall) +
+                       log(population) +
+                       extreme_weather +
+                       log(forest_area),
+                     data = US_climate)
+glance(US_climate_significant)[1]
 ```
 
 ```{r}
-US_climate_positive <- lm(log(avg_temp) ~ log(extreme_weather), data = US_climate)
+US_temp_rainfall <- lm(log(avg_temp) ~ log(rainfall),data = US_climate)
+glance(US_temp_rainfall)[1]
 ```
 
 ```{r}
-US_climate_negative <- lm(log(avg_temp) ~ log(forest_area) + log(rainfall), data = US_climate)
+US_temp_population <- lm(log(avg_temp) ~ log(population),data = US_climate)
+glance(US_temp_population)[1]
+```
+
+```{r}
+US_temp_extreme <- lm(log(avg_temp) ~ extreme_weather,data = US_climate)
+glance(US_temp_extreme)[1]
+```
+
+```{r}
+US_temp_forest <- lm(log(avg_temp) ~ log(forest_area),data = US_climate)
+glance(US_temp_forest)[1]
 ```
 
 ## Linearity Assumptions
