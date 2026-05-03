@@ -150,6 +150,57 @@ glance(US_temp_forest)[1]
 
 ## Linearity Assumptions
 
+```{r}
+library(modelr)
+
+USclimate_test <- US_climate %>%
+  add_predictions(US_climate_all) %>%
+  add_residuals(US_climate_all)
+```
+
+```{r}
+USclimate_test %>% 
+  ggplot() +
+  geom_point(mapping = aes(x = pred, y = log(avg_temp))) +
+  geom_abline(slope = 1, intercept = 0) +
+  labs(
+    title = "US Climate: Observed vs Predicted (Log Scale)",
+    x = "Predicted log(avg_temp)",
+    y = "Observed log(avg_temp)"
+  )
+```
+
+```{r}
+USclimate_test %>% 
+  ggplot() +
+  geom_point(mapping = aes(x = pred, y = resid)) +
+  geom_hline(yintercept = 0) +
+  labs(
+    title = "Residuals vs Predicted Values",
+    x = "Predicted",
+    y = "Residuals"
+    )
+```
+
+```{r}
+USclimate_test %>%
+  ggplot() +
+  geom_qq(aes(sample = resid)) +
+  geom_qq_line(aes(sample = resid)) +
+  labs(
+    title = "Q-Q Plot of Residuals",
+    x = "Theoretical Quantiles",
+    y = "Sample Quantiles"
+  )
+```
+
+The linearity assumption was evaluated using an observed versus predicted plot. The points show a general positive trend, however, the points are widely scattered around the reference line, suggesting that the model does not strongly capture a linear relationship. Therefore, the linearity assumption is only partially satisfied.
+
+The constant variability assumption was evaluated using a residuals versus predicted plot. The residuals are randomly scattered around zero with no clear pattern or funnel shape, suggesting that the variability remains relatively constant across predicted values. Therefore, this assumption is reasonably satisfied.
+
+The normality assumption was evaluated using a Q-Q plot. While the residuals follow the reference line in the middle region, there are noticeable deviations at the ends of the reference line. This indicates that the residuals are approximately normal but not perfectly so. Therefore, the normality assumption is only partially satisfied.
+
+
 # Results
 Write your results here.
 
