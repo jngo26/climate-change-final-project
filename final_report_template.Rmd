@@ -194,12 +194,6 @@ USclimate_test %>%
   )
 ```
 
-The linearity assumption was evaluated using an observed versus predicted plot. The points show a general positive trend, however, the points are widely scattered around the reference line, suggesting that the model does not strongly capture a linear relationship. Therefore, the linearity assumption is only partially satisfied.
-
-The constant variability assumption was evaluated using a residuals versus predicted plot. The residuals are randomly scattered around zero with no clear pattern or funnel shape, suggesting that the variability remains relatively constant across predicted values. Therefore, this assumption is reasonably satisfied.
-
-The normality assumption was evaluated using a Q-Q plot. While the residuals follow the reference line in the middle region, there are noticeable deviations at the ends of the reference line. This indicates that the residuals are approximately normal but not perfectly so. Therefore, the normality assumption is only partially satisfied.
-
 ```{r}
 USclimate_significant_test <- US_climate %>%
   add_predictions(US_climate_significant) %>%
@@ -242,8 +236,6 @@ USclimate_significant_test %>%
   )
 ```
 
-The same tests were applied to the US_climate_significant model. Both the full model and the reduced model containing only the significant variables have nearly identical results. In both cases, the observed versus predicted plots showed very scattered points with a positive linear relationship, the residual plots showed constant variability, and the Q-Q plots showed the residuals following the reference line in the middle region but there are deviations at both ends of the reference line. This suggests that removing non-significant variables did not meaningfully improve the model’s performance or its adherence to the assumptions of a linear model.
-
 ```{r}
 USrainfall_test <- US_climate %>%
   add_predictions(US_temp_rainfall) %>%
@@ -282,8 +274,6 @@ USrainfall_test %>%
     y = "Sample Quantiles"
   )
 ```
-
-
 
 ```{r}
 USextreme_test <- US_climate %>%
