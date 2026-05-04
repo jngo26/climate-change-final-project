@@ -200,6 +200,50 @@ The constant variability assumption was evaluated using a residuals versus predi
 
 The normality assumption was evaluated using a Q-Q plot. While the residuals follow the reference line in the middle region, there are noticeable deviations at the ends of the reference line. This indicates that the residuals are approximately normal but not perfectly so. Therefore, the normality assumption is only partially satisfied.
 
+```{r}
+USclimate_significant_test <- US_climate %>%
+  add_predictions(US_climate_significant) %>%
+  add_residuals(US_climate_significant)
+```
+
+```{r}
+USclimate_significant_test %>% 
+  ggplot() +
+  geom_point(mapping = aes(x = pred, y = log(avg_temp))) +
+  geom_abline(slope = 1, intercept = 0) +
+  labs(
+    title = "US Climate Significant Predicted vs Observed Indicators", 
+    x = "Predicted log(avg_temp)", 
+    y = "Observed log(avg_temp)"
+  )
+```
+
+```{r}
+USclimate_significant_test %>% 
+  ggplot() +
+  geom_point(mapping = aes(x = pred, y = resid)) +
+  geom_hline(yintercept = 0) +
+  labs(
+    title = "Residuals vs Predicted Values",
+    x = "Predicted",
+    y = "Residuals"
+    )
+```
+
+```{r}
+USclimate_significant_test %>%
+  ggplot() +
+  geom_qq(aes(sample = resid)) +
+  geom_qq_line(aes(sample = resid)) +
+  labs(
+    title = "Q-Q Plot of Residuals",
+    x = "Theoretical Quantiles",
+    y = "Sample Quantiles"
+  )
+```
+
+The same tests were applied to the US_climate_significant model. Both the full model and the reduced model containing only the significant variables have nearly identical results. In both cases, the observed versus predicted plots showed very scattered points with a positive linear relationship, the residual plots showed constant variability, and the Q-Q plots showed the residuals following the reference line in the middle region but there are deviations at both ends of the reference line. This suggests that removing non-significant variables did not meaningfully improve the model’s performance or its adherence to the assumptions of a linear model.
+
 
 # Results
 Write your results here.
