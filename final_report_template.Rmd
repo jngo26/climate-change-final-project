@@ -244,6 +244,86 @@ USclimate_significant_test %>%
 
 The same tests were applied to the US_climate_significant model. Both the full model and the reduced model containing only the significant variables have nearly identical results. In both cases, the observed versus predicted plots showed very scattered points with a positive linear relationship, the residual plots showed constant variability, and the Q-Q plots showed the residuals following the reference line in the middle region but there are deviations at both ends of the reference line. This suggests that removing non-significant variables did not meaningfully improve the model’s performance or its adherence to the assumptions of a linear model.
 
+```{r}
+USrainfall_test <- US_climate %>%
+  add_predictions(US_temp_rainfall) %>%
+  add_residuals(US_temp_rainfall)
+
+USrainfall_test %>%
+ggplot() +
+  geom_point(aes(x = log(rainfall), y = log(avg_temp))) +
+  geom_abline(
+    slope = US_temp_rainfall$coefficients[2],
+    intercept = US_temp_rainfall$coefficients[1]
+  ) +
+  labs(
+    title = "Log Average Temperature vs Log Rainfall",
+    x = "Log Rainfall",
+    y = "Log Average Temperature"
+  )
+
+USrainfall_test %>%
+  ggplot() +
+  geom_point(aes(x = pred, y = resid)) +
+  geom_hline(yintercept = 0) +
+  labs(
+    title = "Residuals vs Predicted (Rainfall Model)",
+    x = "Predicted",
+    y = "Residuals"
+  )
+
+USrainfall_test %>%
+  ggplot() +
+  geom_qq(aes(sample = resid)) +
+  geom_qq_line(aes(sample = resid)) +
+  labs(
+    title = "Q-Q Plot of Residuals (Rainfall Model)",
+    x = "Theoretical Quantiles", 
+    y = "Sample Quantiles"
+  )
+```
+
+
+
+```{r}
+USextreme_test <- US_climate %>%
+  add_predictions(US_temp_extreme) %>%
+  add_residuals(US_temp_extreme)
+
+USextreme_test %>%
+ggplot() +
+  geom_point(aes(x = extreme_weather, y = log(avg_temp))) +
+  geom_abline(
+    slope = US_temp_extreme$coefficients[2],
+    intercept = US_temp_extreme$coefficients[1]
+  ) +
+  labs(
+    title = "Log Average Temperature vs Extreme Weather Events",
+    x = "Extreme Weather Events",
+    y = "Log Average Temperature"
+  )
+
+USextreme_test %>%
+  ggplot() +
+  geom_point(aes(x = pred, y = resid)) +
+  geom_hline(yintercept = 0) +
+  labs(
+    title = "Residuals vs Predicted (Extreme Weather Model)",
+    x = "Predicted",
+    y = "Residuals"
+  )
+
+USextreme_test %>% 
+ ggplot() +
+  geom_qq(aes(sample = resid)) +
+  geom_qq_line(aes(sample = resid)) +
+  labs(
+    title = "Q-Q Plot of Residuals (Extreme Weather Model)",
+    x = "Theoretical Quantiles", 
+    y = "Sample Quantiles"
+  )
+```
+
 
 # Results
 Write your results here.
