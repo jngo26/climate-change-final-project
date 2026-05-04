@@ -31,7 +31,7 @@ climate <- read.csv("climate_change_dataset.csv", fileEncoding = "UTF-8-BOM",
 names(climate) <- iconv(names(climate), from = "", to = "UTF-8", sub = "")
 ```
 
-```{r}
+```{r message= FALSE}
 library(dplyr)
 
 tidy_climate <- climate %>%
