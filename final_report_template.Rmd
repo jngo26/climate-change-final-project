@@ -315,6 +315,7 @@ USextreme_test %>%
     y = "Sample Quantiles"
   )
 ```
+
 # Results
 
 Across all scatterplots depicting the relationship between average temperature and a certain climate change indicator (2000-2023), there was no apparent relationship between these variables. In each case, the points were widely scattered with no clear direction or pattern -- indicating a weak or nonexistent association. When filtering the data to only include points from the past five years (2018-2023), a few variables were shown to have a relationship with average temperature. Population, the number of extreme weather events, and forest area exhibited weak positive relationships, while CO2 emissions, rainfall, and renewable energy showed weak negative relationships. Finally, when focusing on data only from the United States (2000-2023) -- several stronger relationships emerged. Extreme weather events had a fairly strong positive relationship with average temperature, as well as renewable energy. Rainfall, on the other hand, demonstrated a strong negative relationship, while forest area maintained a relatively weak association.
