@@ -155,95 +155,87 @@ glance(US_temp_forest)[1]
 ```{r}
 library(modelr)
 
-USclimate_test <- US_climate %>%
+US_climate_t <- US_climate %>%
   add_predictions(US_climate_all) %>%
   add_residuals(US_climate_all)
 ```
 
 ```{r}
-USclimate_test %>% 
+US_climate_t %>% 
   ggplot() +
   geom_point(mapping = aes(x = pred, y = log(avg_temp))) +
   geom_abline(slope = 1, intercept = 0) +
   labs(
-    title = "US Climate: Observed vs Predicted (Log Scale)",
-    x = "Predicted log(avg_temp)",
-    y = "Observed log(avg_temp)"
+    title = "US Climate Model: Observed vs Predicted Average Temperature (Log Scale)",
+    x = "Predicted",
+    y = "Observed"
   )
 ```
 
 ```{r}
-USclimate_test %>% 
+US_climate_t %>% 
   ggplot() +
   geom_point(mapping = aes(x = pred, y = resid)) +
   geom_hline(yintercept = 0) +
   labs(
-    title = "Residuals vs Predicted Values",
+    title = "Residuals vs Predicted (US Climate Model)",
     x = "Predicted",
     y = "Residuals"
     )
 ```
 
 ```{r}
-USclimate_test %>%
+US_climate_t %>%
   ggplot() +
   geom_qq(aes(sample = resid)) +
   geom_qq_line(aes(sample = resid)) +
-  labs(
-    title = "Q-Q Plot of Residuals",
-    x = "Theoretical Quantiles",
-    y = "Sample Quantiles"
-  )
+  labs(title = "Q-Q Plot of Residuals (US Climate Model)")
 ```
 
 ```{r}
-USclimate_significant_test <- US_climate %>%
+US_climate_significant_t <- US_climate %>%
   add_predictions(US_climate_significant) %>%
   add_residuals(US_climate_significant)
 ```
 
 ```{r}
-USclimate_significant_test %>% 
+US_climate_significant_t %>% 
   ggplot() +
   geom_point(mapping = aes(x = pred, y = log(avg_temp))) +
   geom_abline(slope = 1, intercept = 0) +
   labs(
-    title = "US Climate Significant Predicted vs Observed Indicators", 
-    x = "Predicted log(avg_temp)", 
-    y = "Observed log(avg_temp)"
+    title = "Significant Variables Model: Predicted vs Observed Average Temperature (Log Scale)", 
+    x = "Predicted", 
+    y = "Observed"
   )
 ```
 
 ```{r}
-USclimate_significant_test %>% 
+US_climate_significant_t %>% 
   ggplot() +
   geom_point(mapping = aes(x = pred, y = resid)) +
   geom_hline(yintercept = 0) +
   labs(
-    title = "Residuals vs Predicted Values",
+    title = "Residuals vs Predicted (Significant Variables Model)",
     x = "Predicted",
     y = "Residuals"
     )
 ```
 
 ```{r}
-USclimate_significant_test %>%
+US_climate_significant_t %>%
   ggplot() +
   geom_qq(aes(sample = resid)) +
   geom_qq_line(aes(sample = resid)) +
-  labs(
-    title = "Q-Q Plot of Residuals",
-    x = "Theoretical Quantiles",
-    y = "Sample Quantiles"
-  )
+  labs(title = "Q-Q Plot of Residuals (Significant Variables Model)")
 ```
 
 ```{r}
-USrainfall_test <- US_climate %>%
+US_rainfall_t <- US_climate %>%
   add_predictions(US_temp_rainfall) %>%
   add_residuals(US_temp_rainfall)
 
-USrainfall_test %>%
+US_rainfall_t %>%
 ggplot() +
   geom_point(aes(x = log(rainfall), y = log(avg_temp))) +
   geom_abline(
@@ -251,12 +243,12 @@ ggplot() +
     intercept = US_temp_rainfall$coefficients[1]
   ) +
   labs(
-    title = "Log Average Temperature vs Log Rainfall",
-    x = "Log Rainfall",
-    y = "Log Average Temperature"
+    title = "Average Temperature vs Rainfall (Log Scale)",
+    x = "Rainfall",
+    y = "Average Temperature"
   )
 
-USrainfall_test %>%
+US_rainfall_t %>%
   ggplot() +
   geom_point(aes(x = pred, y = resid)) +
   geom_hline(yintercept = 0) +
@@ -266,23 +258,19 @@ USrainfall_test %>%
     y = "Residuals"
   )
 
-USrainfall_test %>%
+US_rainfall_t %>%
   ggplot() +
   geom_qq(aes(sample = resid)) +
   geom_qq_line(aes(sample = resid)) +
-  labs(
-    title = "Q-Q Plot of Residuals (Rainfall Model)",
-    x = "Theoretical Quantiles", 
-    y = "Sample Quantiles"
-  )
+  labs(title = "Q-Q Plot of Residuals (Rainfall Model)")
 ```
 
 ```{r}
-USextreme_test <- US_climate %>%
+US_extreme_t <- US_climate %>%
   add_predictions(US_temp_extreme) %>%
   add_residuals(US_temp_extreme)
 
-USextreme_test %>%
+US_extreme_t %>%
 ggplot() +
   geom_point(aes(x = extreme_weather, y = log(avg_temp))) +
   geom_abline(
@@ -290,12 +278,12 @@ ggplot() +
     intercept = US_temp_extreme$coefficients[1]
   ) +
   labs(
-    title = "Log Average Temperature vs Extreme Weather Events",
+    title = "Average Temperature (Log Scale) vs Extreme Weather Events",
     x = "Extreme Weather Events",
-    y = "Log Average Temperature"
+    y = "Average Temperature"
   )
 
-USextreme_test %>%
+US_extreme_t %>%
   ggplot() +
   geom_point(aes(x = pred, y = resid)) +
   geom_hline(yintercept = 0) +
@@ -305,20 +293,20 @@ USextreme_test %>%
     y = "Residuals"
   )
 
-USextreme_test %>% 
+US_extreme_t %>% 
  ggplot() +
   geom_qq(aes(sample = resid)) +
   geom_qq_line(aes(sample = resid)) +
-  labs(
-    title = "Q-Q Plot of Residuals (Extreme Weather Model)",
-    x = "Theoretical Quantiles", 
-    y = "Sample Quantiles"
-  )
+  labs(title = "Q-Q Plot of Residuals (Extreme Weather Model)")
 ```
 
 # Results
 
 Across all scatterplots depicting the relationship between average temperature and a certain climate change indicator (2000-2023), there was no apparent relationship between these variables. In each case, the points were widely scattered with no clear direction or pattern -- indicating a weak or nonexistent association. When filtering the data to only include points from the past five years (2018-2023), a few variables were shown to have a relationship with average temperature. Population, the number of extreme weather events, and forest area exhibited weak positive relationships, while CO2 emissions, rainfall, and renewable energy showed weak negative relationships. Finally, when focusing on data only from the United States (2000-2023) -- several stronger relationships emerged. Extreme weather events had a fairly strong positive relationship with average temperature, as well as renewable energy. Rainfall, on the other hand, demonstrated a strong negative relationship, while forest area maintained a relatively weak association.
+
+Using the above information/filtered data, multiple linear models were made; one of each significant variable alone, another using all of the significant variables and finally one containing all variables tested, regardless of significance. The linear model consisting of all variables as expected had the highest r^2 value of 0.1902673, which is considered weak/shows a weak correlation between the response variable and the explanatory variables. The linear model consisting of significant variables (rainfall, population, extreme weather events and forest area) had a very close r^2 value of 0.1865008. The variable with the strongest/highest r^2 was rainfall with 0.07761612, while the weakest variable was population with 0.003274811.
+
+Then, linear model assumption plots were used to evaluate whether the regression models satisfied the assumptions required for a reliable linear model. For both the full model and the reduced model containing only significant variables, the observed versus predicted plots showed a general positive relationship, but the points were widely scattered around the reference line, indicating that the linearity assumption is only partially satisfied. The residuals versus predicted plots showed residuals randomly scattered around zero with no clear curve or funnel shape, suggesting that the constant variability assumption is reasonably satisfied. The Q-Q plots showed that the residuals generally follow the reference line in the middle region but deviated at both the ends of the reference line, indicating that the normality assumption was only partially satisfied. Similar results were observed for the rainfall and extreme weather single-variable models, although these models showed even weaker linear relationships. Overall, the assumption plots suggest that while the models capture some general trends in the data, linear regression does not fully explain the relationship between climate indicators and average temperature.
 
 # Conclusion
 Write your conclusion here.
